@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <td translate>Current Sync Status</td>
-            <td class="text-right"> 
+            <td class="text-right">
             <span  data-ng-show="!sync.error">{{sync.status}}</span>
             <span class="text-danger" data-ng-show="sync.error">
               <span  class="glyphicon glyphicon-warning-sign"></span>
@@ -63,7 +63,7 @@
         <thead data-ng-include src="'/views/includes/infoStatus.html'"></thead>
         <tbody>
           <tr>
-            <td translate>Last Block Hash (Bitcoind)</td>
+            <td translate>Last Block Hash (nebliod)</td>
             <td class="text-right ellipsis"><a href="/block/{{lastblockhash}}">{{lastblockhash}}</a></td>
           </tr>
           <tr>
@@ -73,12 +73,9 @@
         </tbody>
       </table>
 
-      <h2 translate>Transaction Output Set Information</h2>
+      <h2 translate> </h2>
       <div  data-ng-controller="StatusController">
-        <button data-ng-click="txoutLoading=1;getStatus('TxOutSetInfo')" class="btn btn-default"  data-ng-show="!txoutsetinfo.height"> 
-          <span translate>Show Transaction Output data</span>
-          <span data-ng-show="txoutLoading" class="glyphicon glyphicon-refresh icon-rotate"></span>
-        </button > 
+
 
         <table class="table" data-ng-show="txoutsetinfo.height" style="table-layout: fixed" >
           <thead  data-ng-include src="'/views/includes/infoStatus.html'"></thead>
@@ -117,7 +114,7 @@
     </div> <!-- END OF COL-8 -->
 
     <div class="col-xs-12 col-md-4 col-gray">
-      <h2 translate>Bitcoin node information</h2>
+      <h2 translate>Neblio node information</h2>
       <table class="table" data-ng-controller="StatusController" data-ng-init="getStatus('Info')">
         <thead  data-ng-include src="'/views/includes/infoStatus.html'"></thead>
         <tbody>
@@ -133,6 +130,10 @@
             <td translate>Blocks</td>
             <td class="text-right"><a href="/block-index/{{info.blocks}}">{{info.blocks}}</a></td>
           </tr>
+     	  <tr>
+            <td>NEBL Supply</td>
+            <td class="text-right">{{info.moneysupply}} NEBL</td>
+          </tr>
           <tr>
             <td translate>Time Offset</td>
             <td class="text-right">{{info.timeoffset}}</td>
@@ -143,7 +144,11 @@
           </tr>
           <tr>
            <td translate>Mining Difficulty</td>
-            <td class="text-right">{{info.difficulty}}</td>
+           <td class="text-right">{{info.difficulty['proof-of-work']}}</td>
+          </tr>
+		  <tr>
+            <td>Staking Difficulty</td>
+            <td class="text-right">{{info.difficulty['proof-of-stake']}}</td>
           </tr>
           <tr>
             <td translate>Testnet</td>
